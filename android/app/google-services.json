@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "254698994167",
+    "project_id": "pedalmais-5ae30",
+    "storage_bucket": "pedalmais-5ae30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254698994167:android:016947b99f59cc4bc796f2",
+        "android_client_info": {
+          "package_name": "com.test.pedal_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8I63bdQGEoBS7QfoDf1-JB413etKdE78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
