@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pedal_project/pages/login/login_screen.dart';
+import 'package:pedal_project/pages/signup/signup_screen.dart';
+import 'package:pedal_project/services/auth_service.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +14,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +36,13 @@ class _LoginPageState extends State<LoginPage> {
               margin: const EdgeInsets.only(top: 170),
               child: Image.asset('assets/images/pedalmais.png'),
             ),
-            SizedBox(height: 93),
+            const SizedBox(height: 93),
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         color: const Color.fromARGB(255, 146, 146, 146),
@@ -42,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 2,
                         ),
                       ),
-                      hintText: 'Username',
+                      hintText: 'E-mail',
                       hintStyle: GoogleFonts.montserrat(
                         color: const Color.fromARGB(255, 146, 146, 146),
                       ),
@@ -51,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 70),
                   TextField(
                     obscureText: true,
+                    controller: _passwordController,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         color: const Color.fromARGB(255, 146, 146, 146),
@@ -73,39 +90,52 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 70),
-                  GestureDetector(
-                    onTap: () => {print('Botão clicado!!')},
-                    child: Container(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         vertical: 15,
-                        horizontal: 155,
+                        horizontal: 120,
                       ),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 148, 77, 206),
-                            Color.fromRGBO(65, 53, 175, 1),
-                          ],
-                        ),
+                      backgroundColor: const Color.fromARGB(255, 148, 77, 206),
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: const Text(
-                        'Entrar',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                    onPressed: () async {
+                      await AuthService().signIn(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                        context: context
+                      );
+                    },
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 40),
-                  Text(
-                    'Eu tenho uma conta',
-                    style: GoogleFonts.montserrat(
-                      color: Colors.purple[800],
-                      fontSize: 16,
-                    )
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignupPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Não tenho uma conta',
+                      style: GoogleFonts.montserrat(
+                        color: Colors.purple[800],
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
                 ],
               ),

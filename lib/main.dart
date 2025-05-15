@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedal_project/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pedal_project/screens/login_screen.dart';
+import 'package:pedal_project/pages/login/login_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
