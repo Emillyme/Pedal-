@@ -25,8 +25,8 @@ class DesafioSemanal extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             gradient: const LinearGradient(
               colors: [
-                Color.fromARGB(255, 124, 74, 204), 
-                Color.fromARGB(255, 104, 123, 207),
+              Color(0xFF423CA3),
+                Color(0xFF986ECC),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
