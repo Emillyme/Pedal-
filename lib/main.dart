@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pedal_project/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pedal_project/pages/desafio/criar_evento.dart';
+import 'package:pedal_project/pages/home/home_screen.dart';
 import 'package:pedal_project/pages/login/login_screen.dart';
 
 void main() async{
@@ -27,7 +29,11 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage()
+      home: LoginPage(),
+      routes: {
+        '/home': (context) => HomeScreen(),
+        '/criarEvento': (context) => const CriarEventoPage()
+      },
     );
   }
 }

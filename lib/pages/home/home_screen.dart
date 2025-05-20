@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pedal_project/pages/componentes/navbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pedal_project/pages/desafio/desafio_semanal.dart';
 import 'package:pedal_project/pages/desafio/seus_desafios.dart';
 import 'package:pedal_project/services/auth_service.dart';
@@ -69,50 +69,114 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // CONTEÚDO PRINCIPAL do PEDALL!!
               Expanded(
-                child: Column(
-                  children: [
-                    const DesafioSemanal(km: '30,00'),
-                    Expanded(
-                      child: StreamBuilder<QuerySnapshot>(
-                        stream: desafiosRef.snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.red), // DEBUG
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const DesafioSemanal(km: '30,00'),
 
-                          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                            return const Center(
-                              child: Text('Nenhum desafio encontrado.'),
-                            );
-                          }
+                      const SizedBox(height: 24),
 
-                          final desafios = snapshot.data!.docs;
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue), // DEBUG
+                        ),
+                        child: Text(
+                          'Seus Desafios',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 49, 46, 49),
+                            // Para testar: cor preta => Colors.black,
+                          ),
+                        ),
+                      ),
 
-                          return ListView.builder(
-                            itemCount: desafios.length,
-                            itemBuilder: (context, index) {
-                              final desafio = desafios[index];
-                              final titulo = desafio['titulo'] ?? 'Sem título';
-                              final status = desafio['status'] ?? 'Sem status';
+                      const SizedBox(height: 12),
 
-                              return SeusDesafios(
-                                titulo: titulo,
-                                status: status,
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.green), // DEBUG
+                          ),
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: desafiosRef.snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+
+                              if (!snapshot.hasData ||
+                                  snapshot.data!.docs.isEmpty) {
+                                return const Center(
+                                  child: Text('Nenhum desafio encontrado.'),
+                                );
+                              }
+
+                              final desafios = snapshot.data!.docs;
+
+                              return ListView.builder(
+                                itemCount: desafios.length,
+                                itemBuilder: (context, index) {
+                                  final desafio = desafios[index];
+                                  final id = desafio.id;
+                                  final titulo =
+                                      desafio['titulo'] ?? 'Sem título';
+                                  final status =
+                                      desafio['status'] ?? 'Sem status';
+
+                                  return SeusDesafios(
+                                    documentId: id,
+                                    titulo: titulo,
+                                    status: status,
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-
-              // Navbar() pode ir aqui se quiser
             ],
+          ),
+        ),
+      ),
+
+      // FAB central
+      bottomNavigationBar: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 10,
+              offset: const Offset(0, -4),
+            ),
+          ],
+        ),
+        child: Center(
+          child: SizedBox(
+            width: 64,
+            height: 64,
+            child: FloatingActionButton(
+              backgroundColor: const Color.fromARGB(255, 142, 89, 211),
+              shape: const CircleBorder(),
+              elevation: 4,
+              onPressed: () {
+                Navigator.pushNamed(context, '/criarEvento');
+              },
+              child: const Icon(Icons.add, size: 32, color: Colors.white),
+            ),
           ),
         ),
       ),
