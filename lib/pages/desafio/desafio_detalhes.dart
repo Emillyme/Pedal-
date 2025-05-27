@@ -41,7 +41,7 @@ return Scaffold(
     ],
     ),
     body: FutureBuilder<DocumentSnapshot>(
-    future: docRef.get(),
+    future: docRef.get(), // GET PELO FIREBASE!!! :D
     builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
         return const Center(child: CircularProgressIndicator());

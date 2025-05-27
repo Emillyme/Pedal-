@@ -31,7 +31,7 @@ class _EditarDesafioPageState extends State<EditarDesafioPage> {
     _loadDesafio();
   }
 
-  void _loadDesafio() async {
+  void _loadDesafio() async { 
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final docRef = FirebaseFirestore.instance
         .collection('usuarios')
@@ -60,7 +60,7 @@ class _EditarDesafioPageState extends State<EditarDesafioPage> {
           .collection('desafios')
           .doc(widget.documentId);
 
-      await docRef.update({
+      await docRef.update({ // PUT usando O FIREBASE!!!
         'titulo': _tituloController.text,
         'descricao': _descricaoController.text,
         'dataInicio': _dataInicioController.text,
@@ -71,7 +71,7 @@ class _EditarDesafioPageState extends State<EditarDesafioPage> {
         const SnackBar(content: Text('Alterações salvas com sucesso!')),
       );
 
-      Navigator.of(context).pop(); // ou vá para a home se preferir
+      Navigator.of(context).pop(); 
     }
   }
 

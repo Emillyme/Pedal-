@@ -127,7 +127,7 @@ class _CriarEventoPageState extends State<CriarEventoPage> {
       'status': 'Em andamento',
     };
 
-    try {
+    try { // POST EM FIREBASE!!!! 
       await FirebaseFirestore.instance
           .collection('usuarios')
           .doc(user.uid)

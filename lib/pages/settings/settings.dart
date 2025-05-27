@@ -37,13 +37,25 @@ class SettingsPage extends StatelessWidget {
                   ),
                 );
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              child: const Text('Alterar desafio'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 124, 172, 211),
+                minimumSize: const Size(
+                  double.infinity, // largura infinita
+                  50, // altura 50
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4), //bordas
+                ),
+              ),
+              child: const Text(
+                'Alterar desafio',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                await docRef.delete();
+                await docRef.delete(); // Delete em FIrebase!!
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Desafio deletado com sucesso')),
                 );
@@ -51,8 +63,20 @@ class SettingsPage extends StatelessWidget {
                   context,
                 ).pushNamedAndRemoveUntil('/home', (route) => false);
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: const Text('Deletar desafio'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 223, 111, 103),
+                minimumSize: const Size(
+                  double.infinity, // largura infinita
+                  50, // altura 50
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4), //bordas
+                ),
+              ),
+              child: const Text(
+                'Deletar desafio',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ],
         ),

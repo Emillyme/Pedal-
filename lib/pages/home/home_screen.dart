@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (userId == null) {
-      return const Center(child: Text('Usuário não logado'));
+      return const Center(child: Text('usueario não logado'));
     }
 
     final desafiosRef = FirebaseFirestore.instance
@@ -70,38 +70,23 @@ class _HomeScreenState extends State<HomeScreen> {
               // CONTEÚDO PRINCIPAL do PEDALL!!
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.red), // DEBUG
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const DesafioSemanal(km: '30,00'),
-
                       const SizedBox(height: 24),
-
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue), // DEBUG
-                        ),
-                        child: Text(
-                          'Seus Desafios',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 49, 46, 49),
-                            // Para testar: cor preta => Colors.black,
-                          ),
+                      Text(
+                        'Seus Desafios',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 49, 46, 49),
+                          // Para testar: cor preta => Colors.black,
                         ),
                       ),
-
                       const SizedBox(height: 12),
-
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.green), // DEBUG
-                          ),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: desafiosRef.snapshots(),
                             builder: (context, snapshot) {
