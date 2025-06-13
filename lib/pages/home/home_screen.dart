@@ -136,7 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      // FAB central
       bottomNavigationBar: Container(
         height: 80,
         decoration: BoxDecoration(
@@ -150,18 +149,39 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         child: Center(
-          child: SizedBox(
-            width: 64,
-            height: 64,
-            child: FloatingActionButton(
-              backgroundColor: const Color.fromARGB(255, 142, 89, 211),
-              shape: const CircleBorder(),
-              elevation: 4,
-              onPressed: () {
-                Navigator.pushNamed(context, '/criarEvento');
-              },
-              child: const Icon(Icons.add, size: 32, color: Colors.white),
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 64,
+                height: 64,
+                child: FloatingActionButton(
+                  heroTag: 'mapa',
+                  backgroundColor: const Color.fromARGB(255, 89, 148, 211),
+                  shape: const CircleBorder(),
+                  elevation: 4,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/mapa');
+                  },
+                  child: const Icon(Icons.map, size: 28, color: Colors.white),
+                ),
+              ),
+              const SizedBox(width: 20), 
+              SizedBox(
+                width: 64,
+                height: 64,
+                child: FloatingActionButton(
+                  heroTag: 'criarEvento',
+                  backgroundColor: const Color.fromARGB(255, 142, 89, 211),
+                  shape: const CircleBorder(),
+                  elevation: 4,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/criarEvento');
+                  },
+                  child: const Icon(Icons.add, size: 32, color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ),
       ),
