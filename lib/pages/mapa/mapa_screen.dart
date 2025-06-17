@@ -38,26 +38,6 @@ class _MapaState extends State<Mapa> {
                         color: Colors.purple,
                       ),
                     ),
-                    Marker(
-                      point: LatLng(-22.8201, -47.2758),
-                      width: 80,
-                      height: 80,
-                      child: const Icon(
-                        Icons.location_pin,
-                        size: 40,
-                        color: Colors.purple,
-                      ),
-                    ),
-                    Marker(
-                      point: LatLng(-22.8195, -47.2735),
-                      width: 80,
-                      height: 80,
-                      child: const Icon(
-                        Icons.location_pin,
-                        size: 40,
-                        color: Colors.purple,
-                      ),
-                    ),
                   ],
                 ),
               ],
