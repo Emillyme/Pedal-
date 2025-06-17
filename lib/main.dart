@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedal_project/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pedal_project/pages/biblia/biblia.dart';
 import 'package:pedal_project/pages/desafio/criar_evento.dart';
 import 'package:pedal_project/pages/home/home_screen.dart';
 import 'package:pedal_project/pages/login/login_screen.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => HomeScreen(),
         '/criarEvento': (context) => const CriarEventoPage(),
-        '/mapa': (context) => const Mapa()
+        '/mapa': (context) => const Mapa(),
+        '/biblia': (context) => const BookListPage()
       },
     );
   }
