@@ -10,6 +10,7 @@ class CriarEventoPage extends StatefulWidget {
 }
 
 class _CriarEventoPageState extends State<CriarEventoPage> {
+  // controllers do firebase
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _tituloController = TextEditingController();
   final TextEditingController _descricaoController = TextEditingController();

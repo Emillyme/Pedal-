@@ -10,6 +10,7 @@ Future<List<Book>> fetchBooks() async {
     ),
     headers: {
       'accept': 'application/json',
+      // api-key é o header para inserir o token
       'api-key': '5132c4eff95e3e309ac4674cb0160f60',
     },
   );
@@ -55,7 +56,6 @@ class _BookListPageState extends State<BookListPage> {
           }
 
           final books = snapshot.data!;
-
 
           return ListView.builder(
             itemCount: books.length,
